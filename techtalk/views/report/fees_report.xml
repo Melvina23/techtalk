@@ -1,0 +1,15 @@
+<odoo>
+
+    <data>
+
+        <record id="fees_report_xlsx" model="ir.actions.report">
+            <field name="name">Fees Details</field>
+            <field name="model">fees.report</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">techtalk.fees_report_xlsx</field>
+            <field name="report_file">techtalk.fees_report_xlsx</field>
+        </record>
+
+    </data>
+
+</odoo>

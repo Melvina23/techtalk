@@ -1,0 +1,130 @@
+<odoo>
+    <data>
+        <!--form-->
+        <record id="tech_student_form" model="ir.ui.view">
+            <field name="name">tech.student.form</field>
+            <field name="model">tech.student</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group>
+                            <group string="student details">
+                                <field name="ref_no" invisible="1"/>
+                                <field name="name"/>
+                                <field name="dob"/>
+                                <field name="age"/>
+                                <field name="gender"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="course_id"/>
+                                <field name="inst_id"/>
+                            </group>
+                            <group string="address details">
+                                <field name="street"/>
+                                <field name="city"/>
+                                <field name="district_id"/>
+                                <field name="state_id"/>
+                                <field name="country_id"/>
+                                <field name="zipcode"/>
+                            </group>
+                            <notebook>
+                                <page string="Marks">
+                                    <field name="mark_ids">
+                                        <tree create="0" unlink="0" edit="0">
+                                            <field name="pro_first"/>
+                                            <field name="pro_sec"/>
+                                            <field name="pro_third"/>
+                                       </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--tree-->
+        <record id="tech_student_tree" model="ir.ui.view">
+            <field name="name">tech.student.tree</field>
+            <field name="model">tech.student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ref_no"/>
+                    <field name="dob" optional="hide"/>
+                    <field name="age" optional="hide"/>
+                    <field name="gender" optional="hide"/>
+                    <field name="email"/>
+                    <field name="phone" optional="hide"/>
+                    <field name="course_id" optional="hide"/>
+                    <field name="district_id" optional="hide"/>
+                    <field name="state_id" optional="hide"/>
+                    <field name="country_id" optional="hide"/>
+                    <field name="inst_id" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- kanban -->
+        <record id="view_tech_student_kanban" model="ir.ui.view">
+            <field name="name">tech.student.kanban</field>
+            <field name="model">tech.student</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="ref_no"/>
+                    <field name="dob"/>
+                    <field name="gender"/>
+                    <field name="email"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <div class="o_kanban_image">
+                                            <field name="image" widget="image"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul style="text-align:Left;">
+                                        <li>
+                                            <b><field name="name"/></b>
+                                        </li>
+                                        <li><b>Reference:</b>
+                                            <field name="ref_no"/>
+                                        </li>
+                                        <li><b>Date of Birth:</b>
+                                            <field name="dob"/>
+                                        </li>
+                                        <li><b>Gender:</b>
+                                            <field name="gender"/>
+                                        </li>
+                                        <li><b>Email:</b>
+                                            <field name="email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!--action-->
+        <record id="tech_student_action" model="ir.actions.act_window">
+            <field name="name">Student</field>
+            <field name="res_model">tech.student</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Record.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

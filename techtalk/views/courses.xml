@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+         <!--form-->
+        <record id="tech_courses_form" model="ir.ui.view">
+            <field name="name">tech.courses.form</field>
+            <field name="model">tech.courses</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group>
+                            <group string="course details">
+                                <field name="name"/>
+                                <field name="desc"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="amount"/>
+                                <field name="instructor_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--tree-->
+        <record id="tech_courses_tree" model="ir.ui.view">
+            <field name="name">tech.courses.tree</field>
+            <field name="model">tech.courses</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="start_date" optional="hide"/>
+                    <field name="end_date" optional="hide"/>
+                    <field name="amount" optional="hide"/>
+                    <field name="instructor_id" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- kanban -->
+        <record id="view_tech_instructor_kanban" model="ir.ui.view">
+            <field name="name">tech.courses.kanban</field>
+            <field name="model">tech.courses</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <div class="o_kanban_image">
+                                            <field name="image" widget="image" class="img-circle"
+                                            style="height: 50px; width: 50px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul style="text-align:Left;">
+                                        <li>
+                                            <b><field name="name"/></b>
+                                        </li>
+                                        <li><b>Start Date:</b>
+                                            <field name="start_date"/>
+                                        </li>
+                                        <li><b>End Date:</b>
+                                            <field name="end_date"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!--action-->
+        <record id="tech_courses_action" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">tech.courses</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Record.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

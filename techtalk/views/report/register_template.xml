@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+
+        <!-- student print -->
+        <record id="stud_report_action" model="ir.actions.report">
+            <field name="name">Student Registration Form</field>
+            <field name="model">tech.register</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">techtalk.report_stud_template</field>
+            <field name="report_file">techtalk.report_stud_template</field>
+            <field name="binding_model_id" ref="model_tech_register"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_stud_template">
+            <t t-call="web.basic_layout">
+                <t t-set="docs" t-value="recs"/>
+                <t t-foreach="recs" t-as="i">
+                <right>
+                    <h3><t t-esc="i.date"/></h3>
+                </right>
+                <center>
+                    <h3>Registration form</h3>
+                </center>
+                <table class="table table-striped">
+                    <tr><td colspan="2">Personal and Contact Information</td></tr>
+                    <tr><td>Application ID</td><td><t t-esc="i.ref_no"/></td></tr>
+                    <tr><td>Name</td><td><t t-esc="i.name"/></td></tr>
+                    <tr><td>Date of Birth</td><td><t t-esc="i.dob"/></td></tr>
+                    <tr><td>Gender</td><td><t t-esc="i.gender"/></td></tr>
+                    <tr><td>Qualification</td><td><t t-esc="i.qualifi"/></td></tr>
+                    <tr><td>Aadhar Number</td><td><t t-esc="i.aadhar"/></td></tr>
+                    <tr><td>Email</td><td><t t-esc="i.email"/></td></tr>
+                    <tr><td>Phone Number</td><td><t t-esc="i.phone"/></td></tr>
+                    <tr><td>Father Name</td><td><t t-esc="i.father"/></td></tr>
+                    <tr><td>Mother Name</td><td><t t-esc="i.mother"/></td></tr>
+                    <tr><td>Parent's Number</td><td><t t-esc="i.mobile"/></td></tr>
+                    <tr><td colspan="2">Address Details</td></tr>
+                    <tr><td>Street</td><td><t t-esc="i.street"/></td></tr>
+                    <tr><td>City</td><td><t t-esc="i.city"/></td></tr>
+                    <tr><td>District</td><td><t t-esc="i.district_id"/></td></tr>
+                    <tr><td>State</td><td><t t-esc="i.state_id"/></td></tr>
+                    <tr><td>Country</td><td><t t-esc="i.country_id"/></td></tr>
+                    <tr><td>Pincode</td><td><t t-esc="i.zipcode"/></td></tr>
+                </table>
+            </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

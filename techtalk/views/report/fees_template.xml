@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+    <!-- report profile -->
+
+    <record id="fees_report_wizard" model="ir.actions.report">
+            <field name="name">fees Report</field>
+            <field name="model">tech.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">techtalk.report_fees_template</field>
+            <field name="report_file">techtalk.report_fees_template</field>
+            <field name="binding_model_id" ref="model_tech_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_fees_template">
+            <t t-call="web.basic_layout">
+                <center>
+                    <h4>Fees Payment Details</h4>
+                    <br/><br/>
+                </center>
+                <table class="table table-striped">
+                    <thead>
+                        <th>S.No</th>
+                        <th>Payment ID</th>
+                        <th>Student Name</th>
+                        <th>Payment Date</th>
+                        <th>Course Name</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                    </thead>
+                    <tbody>
+                        <t t-set="record_ids" t-value="payment_records"/>
+                        <t t-set="count" t-value="1"/>
+                        <t t-foreach="record_ids" t-as="record_id">
+                            <tr>
+                                <td>
+                                    <t t-esc="count"/>
+                                </td>
+                                <td><t t-esc="record_id.number"/></td>
+                                <td><t t-esc="record_id.name"/></td>
+                                <td><t t-esc="record_id.pay_date"/></td>
+                                <td><t t-esc="record_id.course_id.name"/></td>
+                                <td><t t-esc="record_id.amount"/></td>
+                                <td><t t-esc="record_id.status"/></td>
+                            </tr>
+                            <t t-set="count" t-value="count + 1"/>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </template>
+
+    </data>
+</odoo>

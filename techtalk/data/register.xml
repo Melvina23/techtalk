@@ -1,0 +1,241 @@
+<odoo>
+    <data>
+
+        <!-- Register Page -->
+        <template id="register_stud" name="Student Registration">
+            <t t-call="website.layout">
+                <div align="center">
+                    <h2>TECHTALK 2024</h2>
+                    <h4>Registration Form</h4>
+
+                    <t t-if="error">
+                        <div class="alert alert-danger">
+                            <t t-esc="error"/>
+                        </div>
+                    </t>
+
+                    <t t-if="success">
+                        <div class="alert alert-success">
+                            <t t-esc="success"/>
+                        </div>
+                    </t>
+
+                    <br/>
+                    <form method="POST" action="/register/stud" id="registration_form">
+                        <table width="30%">
+                            <h5>Personal and Contact Information</h5>
+                            <tr>
+                                <td style="text-align: right;"><label for="name"><b>Name :</b></label></td>
+                                <td><input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name"
+                                           pattern="/^[A-Za-z]+([\ A-Za-z]+)*/+" title="Name Should Be In Alphabetic" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="dob"><b>Date of Birth :</b></label></td>
+                                <td><input type="date" name="dob" id="dob" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="gender"><b>Gender :</b></label></td>
+                                <td>
+                                    <select name="gender" id="gender" class="form-control" required="1">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Other</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="qualifi"><b>Qualification :</b></label></td>
+                                <td>
+                                    <select name="qualifi" id="qualifi" class="form-control" required="1">
+                                        <option value="UG">UG</option>
+                                        <option value="PG">PG</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="aadhar"><b>Aadhar <br/>Number :</b></label></td>
+                                <td><input type="text" name="aadhar" id="aadhar" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="email"><b>Email :</b></label></td>
+                                <td><input type="email" name="email" id="email" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="phone"><b>Phone :</b></label></td>
+                                <td><input type="tel" name="phone" id="phone" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="father"><b>Father Name :</b></label></td>
+                                <td><input type="text" name="father" id="father" class="form-control" placeholder="Enter Father Name"
+                                           pattern="/^[A-Za-z]+([\ A-Za-z]+)*/+" title="Name Should Be In Alphabetic" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="mother"><b>Mother Name :</b></label></td>
+                                <td><input type="text" name="mother" id="mother" class="form-control" placeholder="Enter Mother Name"
+                                           pattern="/^[A-Za-z]+([\ A-Za-z]+)*/+" title="Name Should Be In Alphabetic" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="mobile"><b>Father/Mother <br/>Mobile Number :</b></label></td>
+                                <td><input type="tel" name="mobile" id="mobile" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="course_id"><b>Technology :</b></label></td>
+                                <td>
+                                    <select name="course_id" class="form-control" required="1">
+                                        <t t-foreach="course" t-as="te">
+                                            <option t-att-value="te.id">
+                                                <t t-esc="te.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <br/>
+                        <table width="25%" class="text-center">
+                            <h5>Address Details</h5>
+
+                            <tr style="margin-left:20px !important;">
+                                <td style="text-align: right;"><label for="street"><b>Street :</b></label></td>
+                                <td><input type="text" name="street" id="street" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="city"><b>City :</b></label></td>
+                                <td><input type="text" name="city" id="city" class="form-control" required="1"/></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="district"><b>District :</b></label></td>
+                                <td>
+                                    <select name="district" class="form-control" required="1">
+                                        <t t-foreach="district" t-as="dt">
+                                            <option t-att-value="dt.id">
+                                                <t t-esc="dt.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="state"><b>State :</b></label></td>
+                                <td>
+                                    <select name="state" class="form-control" required="1">
+                                        <t t-foreach="state" t-as="st">
+                                            <option t-att-value="st.id">
+                                                <t t-esc="st.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="country"><b>Country : </b></label></td>
+                                <td>
+                                    <select name="country" class="form-control" required="1">
+                                        <t t-foreach="country" t-as="cn">
+                                            <option t-att-value="cn.id">
+                                                <t t-esc="cn.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label for="zipcode"><b>Pincode : </b></label></td>
+                                <td><input type="text" name="zipcode" id="zipcode" class="form-control" required="1"/></td>
+                            </tr>
+                        </table>
+
+
+                        <table>
+                            <tr align="center">
+                                <td style="padding: 20px;">
+                                    <input type="reset" class="btn btn-primary" id="reset_button"/>
+                                </td>
+                                <td style="padding: 20px;">
+                                    <button type="submit" class="btn btn-primary" id="submit_button">Submit</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </t>
+        </template>
+
+        <template id="add_success">
+            <t t-set="recs" t-value="records"/>
+            <t t-set="a1" t-value="z1"/>
+            <t t-set="a2" t-value="z2"/>
+            <t t-set="a3" t-value="z3"/>
+            <t t-foreach="recs" t-as="i">
+                <right>
+                    <button class="print-button" onclick="window.print();">Print</button>
+                </right>
+                <center>
+                    <h3>Registration form</h3>
+                </center>
+                <style>
+                    th, td
+                        {
+                            padding: 10px;
+                            text-align: Center;
+                            border-bottom: 1px solid #ddd;
+                        }
+                </style>
+                <table border="2px" width="80%" align="center">
+                    <tr><td colspan="2"><b>PERSONAL AND CONTACT INFORMATION</b></td></tr>
+                    <tr><td><b>Application ID</b></td><td><b><t t-esc="i.ref_no"/></b></td></tr>
+                    <tr><td><b>Name</b></td><td><b><t t-esc="i.name"/></b></td></tr>
+                    <tr><td><b>Date of Birth</b></td><td><b><t t-esc="i.dob"/></b></td></tr>
+                    <tr><td><b>Gender</b></td><td><b><t t-esc="i.gender"/></b></td></tr>
+                    <tr><td><b>Qualification</b></td><td><b><t t-esc="i.qualifi"/></b></td></tr>
+                    <tr><td><b>Aadhar Number</b></td><td><b><t t-esc="i.aadhar"/></b></td></tr>
+                    <tr><td><b>Email</b></td><td><b><t t-esc="i.email"/></b></td></tr>
+                    <tr><td><b>Phone Number</b></td><td><b><t t-esc="i.phone"/></b></td></tr>
+                    <tr><td><b>Father Name</b></td><td><b><t t-esc="i.father"/></b></td></tr>
+                    <tr><td><b>Mother Name</b></td><td><b><t t-esc="i.mother"/></b></td></tr>
+                    <tr><td><b>Parent's Number</b></td><td><b><t t-esc="i.mobile"/></b></td></tr>
+                    <tr><td colspan="2"><b>ADDRESS DETAILS</b></td></tr>
+                    <tr><td><b>Street</b></td><td><b><t t-esc="i.street"/></b></td></tr>
+                    <tr><td><b>City</b></td><td><b><t t-esc="i.city"/></b></td></tr>
+                    <tr><td><b>District</b></td><td><b><t t-esc="a1"/></b></td></tr>
+                    <tr><td><b>State</b></td><td><b><t t-esc="a2"/></b></td></tr>
+                    <tr><td><b>Country</b></td><td><b><t t-esc="a3"/></b></td></tr>
+                    <tr><td><b>Pincode</b></td><td><b><t t-esc="i.zipcode"/></b></td></tr>
+                </table>
+            </t>
+            <style>
+                /* Basic styling for the button */
+                .print-button {
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    color: white;
+                    background-color: #007BFF;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                .print-button:hover {
+                    background-color: #0056b3;
+                }
+                @media print {
+                    .print-button {
+                        display: none; /* Hide the button when printing */
+                    }
+                }
+            </style>
+        </template>
+
+        <template id="response_template">
+            <h1>Error</h1>
+            <p t-esc="error" />
+        </template>
+
+        <template id="checkup">
+            <h1>Error</h1>
+        </template>
+
+    </data>
+</odoo>

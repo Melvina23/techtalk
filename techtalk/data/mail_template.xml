@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Your records go here -->
+        <record id="send_client_approved" model="mail.template">
+            <field name="name">Student Approval</field>
+            <field name="model_id" ref="techtalk.model_tech_register"/>
+            <field name="subject">Student Approved</field>
+            <field name="email_from">melvinaamalraj@gmail.com</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="body_html" type="html">
+                <p>
+                    Welcome...
+                    We are pleased to inform you that your registration has been approved.
+                    Waiting for a confirmation call.
+                    Thank you!
+                </p>
+            </field>
+        </record>
+
+        <record id="send_client_rejected" model="mail.template">
+            <field name="name">Student Reject</field>
+            <field name="model_id" ref="techtalk.model_tech_register"/>
+            <field name="subject">Student Rejected</field>
+            <field name="email_from">melvinaamalraj@gmail.com</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="body_html" type="html">
+                <p>
+                    We are pleased to inform you that your registration has been rejected.
+                    Try again text time.
+                    Thank you!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

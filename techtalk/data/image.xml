@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <!-- login -->
+        <template id="assets_frontend" name="Custom Assets" inherit_id="website.layout">
+            <xpath expr="." position="inside">
+                <style type="text/css">
+                    body {
+                        background-image: url('/techtalk/static/description/img3.jpg');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                    }
+                </style>
+            </xpath>
+        </template>
+    </data>
+</odoo>

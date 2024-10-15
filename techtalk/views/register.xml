@@ -1,0 +1,134 @@
+<odoo>
+    <data>
+        <!--form-->
+        <record id="tech_register_form" model="ir.ui.view">
+            <field name="name">tech.register.form</field>
+            <field name="model">tech.register</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+                            <button name="set_approved" string="Approve" type="object" class="btn-primary" icon="fa-check"
+                                    invisible="state != 'Draft'"/>
+                            <button name="set_rejected" string="Reject" type="object" class="btn-danger" icon="fa-times"
+                                    invisible="state != 'Draft'"/>
+                            <field name="state" widget="statusbar" statusbar_visible="Draft,Approved,Rejected"/>
+                        </header>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group string="registeration form">
+                            <group string="student details">
+                                <field name="ref_no" invisible="1"/>
+                                <field name="name"/>
+                                <field name="dob"/>
+                                <field name="gender"/>
+                                <field name="aadhar"/>
+                                <field name="email"/>
+                                <field name="phone" placeholder="Enter Your Number"/>
+                                <field name="father"/>
+                                <field name="mother"/>
+                                <field name="mobile" placeholder="Enter Parents Number"/>
+                                <field name="course_id"/>
+                            </group>
+                            <group string="address details">
+                                <field name="street"/>
+                                <field name="city"/>
+                                <field name="district_id"/>
+                                <field name="state_id"/>
+                                <field name="country_id"/>
+                                <field name="zipcode"/>
+                            </group>la
+                            <group>
+                                <button name="confirm" string="Confirm" type="object" class="btn-primary"
+                                        invisible="state != 'Approved'"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--tree-->
+        <record id="tech_register_tree" model="ir.ui.view">
+            <field name="name">tech.register.tree</field>
+            <field name="model">tech.register</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ref_no"/>
+                    <field name="dob" optional="hide"/>
+                    <field name="gender"/>
+                    <field name="aadhar" optional="hide"/>
+                    <field name="email"/>
+                    <field name="phone" optional="hide"/>
+                    <field name="father" optional="hide"/>
+                    <field name="mother" optional="hide"/>
+                    <field name="mobile" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- kanban -->
+        <record id="view_tech_register_kanban" model="ir.ui.view">
+            <field name="name">tech.register.kanban</field>
+            <field name="model">tech.register</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="ref_no"/>
+                    <field name="dob"/>
+                    <field name="gender"/>
+                    <field name="email"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <div class="o_kanban_image">
+                                            <field name="image" widget="image"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul style="text-align:Left;">
+                                        <li>
+                                            <b><field name="name"/></b>
+                                        </li>
+                                        <li><b>Reference:</b>
+                                            <field name="ref_no"/>
+                                        </li>
+                                        <li><b>Date of Birth:</b>
+                                            <field name="dob"/>
+                                        </li>
+                                        <li><b>Gender:</b>
+                                            <field name="gender"/>
+                                        </li>
+                                        <li><b>Email:</b>
+                                            <field name="email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!--action-->
+        <record id="tech_register_action" model="ir.actions.act_window">
+            <field name="name">Registration</field>
+            <field name="res_model">tech.register</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Record.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

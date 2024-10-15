@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+
+        <!--Marks -->
+        <record id="tech_marks_form" model="ir.ui.view">
+            <field name="name">tech.marks.form</field>
+            <field name="model">tech.marks</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Marks information">
+                            <group>
+                                <field name="stud_id"/>
+                                <field name="pro_first"/>
+                                <field name="pro_sec"/>
+                                <field name="pro_third"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="tech_marks_tree" model="ir.ui.view">
+            <field name="name">tech.marks.tree</field>
+            <field name="model">tech.marks</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="stud_id"/>
+                    <field name="pro_first"/>
+                    <field name="pro_sec"/>
+                    <field name="pro_third"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="tech_marks_action" model="ir.actions.act_window">
+            <field name="name">Marks</field>
+            <field name="res_model">tech.marks</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

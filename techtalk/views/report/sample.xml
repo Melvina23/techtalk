@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+
+    <!-- report profile -->
+
+    <record id="sample_report_wizard" model="ir.actions.report">
+            <field name="name">Report</field>
+            <field name="model">tech.register</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">techtalk.report_sample_template</field>
+            <field name="report_file">techtalk.report_sample_template</field>
+            <field name="binding_model_id" ref="model_tech_register"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_sample_template">
+            <t t-call="web.basic_layout">
+                <center>
+                    Fees Payment Details
+                </center>
+                <table class="table table-striped">
+                    <thead>
+                        <th>S.No</th>
+                        <th>Payment ID</th>
+                        <th>Student Name</th>
+                        <th>Payment Date</th>
+                        <th>Course Name</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                    </thead>
+                    <tbody>
+                        <t t-set="rec_ids" t-value="regis_records"/>
+                        <t t-set="count" t-value="1"/>
+                        <t t-foreach="rec_ids" t-as="rec_id">
+                            <tr>
+                                <td>
+                                    <t t-esc="count"/>
+                                </td>
+                                <td><t t-esc="rec_id.ref_no"/></td>
+                                <td><t t-esc="rec_id.name"/></td>
+                                <td><t t-esc="rec_id.dob"/></td>
+                                <td><t t-esc="rec_id.gender"/></td>
+                                <td><t t-esc="rec_id.email"/></td>
+                                <td><t t-esc="rec_id.phone"/></td>
+                            </tr>
+                            <t t-set="count" t-value="count + 1"/>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,172 @@
+<odoo>
+    <data>
+
+        <!-- Home Page Template -->
+        <template id="homepage_template" name="Home Page">
+            <t t-call="website.layout">
+                <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                        }
+                        .product-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 20px;
+                        }
+                        .product {
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            overflow: hidden;
+                            width: 200px;
+                            text-align: center;
+                        }
+                        .product img {
+                            width: 100%;
+                            height: auto;
+                        }
+                        .product-info {
+                            padding: 10px;
+                        }
+                        .product-name {
+                            font-size: 1.2em;
+                            margin: 0;
+                        }
+                        .product-price {
+                            color: #888;
+                            margin: 0;
+                        }
+                        .product-content {
+                            color: #000;
+                            margin: 0;
+                        }
+                </style>
+                <div class="o_registration_page">
+                    <br/>
+                    <marquee behavior="scroll" direction="left"><h5>Techtalk 2024 (Oct-Dec) Batch - Coming Soon!!</h5></marquee>
+                    <br/>
+                    <br/>
+                    <center><h1>TECHTALK 2024</h1></center>
+                    <center><h3>Technology Certification Courses</h3></center>
+                </div>
+
+                <div class="page" align="left" border='1' style="padding: 20px 20px;">
+                    <br/>
+                    <h5>Want To Apply, Click Here👉🏻<button type="button" class="btn btn-primary" height="100%" width="50%" onclick="window.location.href='/register';">Register Now</button>
+                    </h5><br/>
+                    <div class="product-container" >
+                        <t t-foreach="course" t-as="i">
+                            <div class="product">
+                                <img t-attf-src="data:image/jpeg;base64,{{ i['image'] }}" alt="Course 1"/>
+                                <div class="product-info">
+                                    <p class="product-name"> <t t-esc="i['name']"/> </p>
+                                    <p class="product-content"> From : <t t-esc="i['start_date']"/></p>
+                                    <p class="product-content">To : <t t-esc="i['end_date']"/></p>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <a t-att-href="'/readmore-page/%d' % i['id']" class="btn btn-info">Read More</a>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Read More -->
+        <template id="course_readmore" name="Python Read More">
+            <t t-call="website.layout">
+                <div class="my-page" style="margin:5%;" align="left">
+                    <t t-foreach="course" t-as="i">
+                        <img t-attf-src="data:image/jpeg;base64,{{ i['image'] }}" alt="Course 1"/>
+                            <h3>Name: <t t-esc="i['name']"/></h3>
+                        <h3>From: <t t-esc="i['start_date']"/></h3>
+                        <h3>To: <t t-esc="i['end_date']"/></h3>
+                        <h3>Amount: ₹<t t-esc="i['amount']"/></h3><br/>
+                        <h5><t t-esc="i['name']"/> Programming for Beginners:</h5>
+                        Unlock the power of programming with our comprehensive
+                            <t t-esc="i['name']"/> course designed for beginners.<br/> This course offers
+                            a hands-on approach to learning <t t-esc="i['name']"/>, one of the most versatile
+                            and widely-used programming languages today.<br/> Whether you aim to develop
+                            web applications, analyze data, or automate tasks, this course will provide
+                            you with the foundational skills needed to succeed.<br/><br/>
+                        <h5>COURSE FEATURES :</h5>
+                        <div>
+                        <h6>Interactive Learning:</h6>
+                            Engage with coding exercises and quizzes to reinforce your understanding of concepts.<br/><br/>
+                        <h6>Step-by-Step Guidance:</h6>
+                             Follow a structured curriculum that takes you from basic syntax to advanced topics, ensuring a solid grasp of <t t-esc="i['name']"/>.<br/><br/>
+                        <h6>Real-World Projects:</h6>
+                            Apply your skills through practical projects, including data analysis, web scraping, and simple game development.<br/><br/>
+                        <h6>Expert Instructors:</h6>
+                             Learn from experienced <t t-esc="i['name']"/> developers who provide insights and tips to enhance your coding journey.<br/><br/>
+                        <h6>Community Support:</h6>
+                            Join a vibrant community of learners where you can ask questions, share ideas, and collaborate on projects.<br/><br/>
+                        <h6>Flexible Schedule:</h6>
+                             Study at your own pace with recorded lectures and downloadable resources available 24/7.<br/><br/>
+                        <h6>Certification:</h6>
+                            Receive a certificate upon completion to showcase your skills to potential employers.<br/><br/>
+                        </div>
+                    </t>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.getElementById('read-more-button').onclick = function() {
+                            var content = document.querySelector('.read-more-content');
+                            if (content.style.display === 'none') {
+                                content.style.display = 'block';
+                                this.textContent = 'Read Less';
+                            } else {
+                                content.style.display = 'none';
+                                this.textContent = 'Read More';
+                            }
+                        };
+                    });
+                </script>
+            </t>
+        </template>
+
+        <!-- about page -->
+
+        <template id="about_template" name="About Us">
+            <t t-call="website.layout">
+                <div class="page" align="left" border='1' style="padding: 20px 20px;">
+                    <br/><br/><h4>About Techtalk Courses</h4>
+                    Welcome to Techtalk Courses – where technology meets learning!<br/>
+                    Our platform is dedicated to empowering individuals with the skills and knowledge needed to thrive in today’s fast-paced tech landscape.
+                    <br/><br/><h4>Our Mission</h4>
+                    At Techtalk Courses, we believe that education is the key to unlocking potential.<br/>
+                    Our mission is to provide high-quality, accessible, and engaging courses that cater to learners of all levels, from beginners to seasoned professionals.
+                    <br/><br/><h4>What We Offer</h4>
+                    <div style="padding: 20px 20px;">
+                        <h5>Comprehensive Courses:</h5>
+                        Explore a wide variety of courses covering the latest technologies, programming languages, software tools, and industry trends.<br/>
+                        Each course is designed by experts to ensure you receive the most relevant and practical knowledge.<br/><br/>
+                        <h5>Hands-On Learning:</h5>
+                        Our courses feature interactive projects and real-world applications that help reinforce your learning and give you the confidence to apply your skills in practical situations.<br/><br/>
+                        <h5>Flexible Learning Paths:</h5>
+                        Whether you prefer self-paced learning or guided instruction, we offer options that fit your schedule and learning style.<br/>
+                        Learn at your own pace, whenever and wherever it suits you.<br/><br/>
+                        <h5>Expert Instructors:</h5>
+                        Learn from industry professionals who bring their experience and insights directly to you.<br/>
+                        Our instructors are passionate about teaching and committed to helping you succeed.<br/><br/>
+                        <h5>Community Support:</h5>
+                        Join a vibrant community of learners!<br/>
+                        Connect with peers, ask questions, and collaborate on projects in our dedicated forums and discussion groups.
+                    </div>
+                    <br/><h4>Why Choose Techtalk Courses?</h4>
+                    <div style="padding: 20px 20px;">
+                        <h5>Quality Content:</h5>
+                        Our courses are regularly updated to reflect the latest industry standards and advancements, ensuring you’re always learning relevant material.<br/>
+                        <h5>Certification:</h5>
+                        Upon completion of each course, receive a certificate to showcase your achievements and enhance your professional credentials.<br/>
+                        <h5>Career Development:</h5>
+                        Equip yourself with in-demand skills that can help you advance in your career or pivot into a new tech field.
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

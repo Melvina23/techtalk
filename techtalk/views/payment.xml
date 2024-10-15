@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+
+        <!--from-->
+        <record id="tech_payment_form" model="ir.ui.view">
+            <field name="name">tech.payment.form</field>
+            <field name="model">tech.payment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Fees information">
+                                <field name="number"/>
+                                <field name="name"/>
+                                <field name="pay_date"/>
+                                <field name="course_id"/>
+                                <field name="amount"/>
+                                <field name="status"/>
+                            </group>
+                            <footer>
+                                <field name="button" invisible="1"/>
+                                <button name="pay_fee" string="Pay" type="object" class="btn-primary" invisible="button == 'Notshow'"/>
+                            </footer>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+         <!--tree-->
+        <record id="tech_payment_tree" model="ir.ui.view">
+            <field name="name">tech.payment.tree</field>
+            <field name="model">tech.payment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number"/>
+                    <field name="name"/>
+                    <field name="pay_date" optional="hide"/>
+                    <field name="course_id"/>
+                    <field name="amount"/>
+                    <field name="status" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+         <!--action-->
+        <record id="tech_payment_action" model="ir.actions.act_window">
+            <field name="name">Payment</field>
+            <field name="res_model">tech.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Record.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
